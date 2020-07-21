@@ -56,7 +56,7 @@ module.exports = {
         } else {
           sendMessage(
             'good',
-            'Deploy succeeded for app:',
+            `Deploy for <${appUrl}|${appName}> succeeded.`,
             deployNotifications.slackWebhookUrl,
             deployNotifications.slackChannel
           )
