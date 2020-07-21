@@ -1,0 +1,15 @@
+{
+  "name": "mup-deploy-notifications",
+  "version": "0.1.0",
+  "description": "Slack notifications when a deploy fails or succeeds",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zodern",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "joi": "^17.1.1"
+  }
+}
