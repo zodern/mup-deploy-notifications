@@ -38,13 +38,6 @@ module.exports = {
       const appName = app.name
       const appUrl = app.env && app.env.ROOT_URL ? app.env.ROOT_URL : ''
 
-      sendMessage(
-        'none',
-        `Starting deploy for <${appUrl}|${appName}>`,
-        deployNotifications.slackWebhookUrl,
-        deployNotifications.slackChannel
-      )
-
       process.on('exit', async (code) => {
         if (code > 0) {
           sendMessage(

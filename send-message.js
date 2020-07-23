@@ -10,7 +10,7 @@ async function send() {
     "channel": channel,
     "text": "",
     attachments: [{
-      color: color === 'none' ? undefined : color,
+      color: color,
       mrkdwn_in: 'text',
       text: message
     }]
