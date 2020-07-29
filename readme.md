@@ -25,7 +25,7 @@ module.exports = {
   // ... rest of config
 
   deployNotifications: {
-    // Add the incoming webhooks app (https://zodern.slack.com/apps/A0F7XDUAZ-incoming-webhooks)
+    // Add the incoming webhooks app (https://slack.com/apps/A0F7XDUAZ-incoming-webhooks)
     // to get a webhook url
     slackWebhookUrl: 'https://hooks.slack.com/services/789/1234345/abcdefg',
     // Name of slack channel to receive the messages
