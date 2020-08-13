@@ -52,18 +52,20 @@ module.exports = {
       let commitHash = '<unable to retrieve git commit>';
       let commitMessage = '';
 
-      if (fs.existsSync(api.resolvePath(appPath, '.git'))) {
-        try {
-          const commitHashOutput = execFileSync("git", ["rev-parse", "--short", "HEAD"], {
-            cwd: appPath,
-          });
-          commitHash = commitHashOutput.toString('utf-8').trim();
+      try {
+        const commitHashOutput = execFileSync("git", ["rev-parse", "--short", "HEAD"], {
+          cwd: appPath,
+        });
+        commitHash = commitHashOutput.toString('utf-8').trim();
 
-          const messageOutput = execFileSync("git", ["show", "-s", "--format=%s", commitHash], {
-            cwd: appPath,
-          });
-          commitMessage = `(${messageOutput.toString('utf-8').trim()})`;
-        } catch (e) {
+        const messageOutput = execFileSync("git", ["show", "-s", "--format=%s", commitHash], {
+          cwd: appPath,
+        });
+        commitMessage = `(${messageOutput.toString('utf-8').trim()})`;
+      } catch (e) {
+        if (e.message && e.message.includes('not a git repository')) {
+          console.error('Unable to include git details in deploy notification: no .git folder found');
+        } else {
           console.error('Unable to retrieve git commit details');
           console.error(e);
         }
