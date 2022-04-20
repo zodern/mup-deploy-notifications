@@ -1,3 +1,7 @@
+## 0.5.1 - April 20, 2022
+
+- Update deps
+
 ## 0.5.0 - August 13, 2020
 
 - Fix getting git commit details in monorepos
