@@ -9,7 +9,7 @@
   "author": "zodern",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.1",
-    "joi": "^17.1.1"
+    "axios": "^0.26.1",
+    "joi": "^17.6.0"
   }
 }
