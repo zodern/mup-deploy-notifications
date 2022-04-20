@@ -1,7 +1,6 @@
 const { execSync, execFileSync } = require('child_process');
 const joi = require('joi');
 const os = require('os');
-const fs = require('fs');
 
 // We send the message while the process is exiting, so we can only do synchronous work.
 // To work around that, we send the message in a child process using execSync
