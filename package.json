@@ -1,6 +1,6 @@
 {
   "name": "mup-deploy-notifications",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Slack notifications when a deploy fails or succeeds",
   "main": "index.js",
   "scripts": {

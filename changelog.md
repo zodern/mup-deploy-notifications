@@ -1,3 +1,7 @@
+## 0.5.2 - January 9, 2023
+
+- Fix bugs with non-meteor apps
+
 ## 0.5.1 - April 20, 2022
 
 - Update deps
