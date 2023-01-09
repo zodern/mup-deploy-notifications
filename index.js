@@ -39,7 +39,8 @@ module.exports = {
     'pre.deploy'(api) {
       const {
         app,
-        deployNotifications
+        deployNotifications,
+        proxy
       } = api.getConfig();
 
       if (!deployNotifications) {
@@ -47,7 +48,7 @@ module.exports = {
       }
 
       const appName = app.name;
-      const appPath = api.resolvePath(api.getBasePath(), app.path);
+      const appPath = api.resolvePath(api.getBasePath(), app.path || process.cwd());
       let commitHash = '<unable to retrieve git commit>';
       let commitMessage = '';
 
@@ -70,15 +71,24 @@ module.exports = {
         }
       }
 
-      const appUrl = app.env && app.env.ROOT_URL ? app.env.ROOT_URL : '';
+      let appUrl;
+      if (app.env && app.env.ROOT_URL) {
+        appUrl = app.env.ROOT_URL;
+      } else if (proxy && proxy.domains) {
+        let domain = proxy.domains.split(',')[0].trim();
+        appUrl = `https://${domain}`;
+      }
+
       const isCI = process.env.CI === 'true';
       const context = `Deployed commit *${commitHash}* ${commitMessage} from *${isCI ? 'CI' : os.hostname()}*`;
+
+      let appLink = appUrl ? `<${appUrl}}${appName}>` : appName;
 
       process.on('exit', async (code) => {
         if (code > 0) {
           sendMessage({
             status: 'danger',
-            message: `Deploy for <${appUrl}|${appName}> failed.`,
+            message: `Deploy for ${appLink} failed.`,
             fallback: `Deploy for ${appName} failed.`,
             context,
             endpoint: deployNotifications.slackWebhookUrl,
@@ -87,7 +97,7 @@ module.exports = {
         } else {
           sendMessage({
             status: 'good',
-            message: `Deploy for <${appUrl}|${appName}> succeeded.`,
+            message: `Deploy for ${appLink} succeeded.`,
             fallback: `Deploy for ${appName} succeeded.`,
             context,
             endpoint: deployNotifications.slackWebhookUrl,
