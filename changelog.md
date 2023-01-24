@@ -1,3 +1,7 @@
+## 0.5.3 - January 24, 2023
+
+- Fix formatting of URL to app
+
 ## 0.5.2 - January 9, 2023
 
 - Fix bugs with non-meteor apps
