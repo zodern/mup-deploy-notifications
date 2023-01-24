@@ -82,7 +82,7 @@ module.exports = {
       const isCI = process.env.CI === 'true';
       const context = `Deployed commit *${commitHash}* ${commitMessage} from *${isCI ? 'CI' : os.hostname()}*`;
 
-      let appLink = appUrl ? `<${appUrl}}${appName}>` : appName;
+      let appLink = appUrl ? `<${appUrl}|${appName}>` : appName;
 
       process.on('exit', async (code) => {
         if (code > 0) {
